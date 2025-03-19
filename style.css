@@ -1,0 +1,102 @@
+*,html{
+    box-sizing: border-box;
+    margin: 0px;
+    user-select: none;
+}
+body {
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#farazContainer {
+	text-align: center;
+	font-size: 4.5vw;
+	padding: 2em;
+	direction: rtl; /* added for right-to-left text display */
+}
+
+/* New navigation container */
+.nav-container {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+}
+
+/* Allow children of the container to be clickable */
+.nav-container .nav-overlay,
+.nav-container .nav-controls {
+    pointer-events: auto;
+}
+
+/* New overlay area styles */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+.nav-overlay.left {
+    left: 0;
+    width: 33.33%;
+}
+.nav-overlay.right {
+    right: 0;
+    width: 33.33%;
+}
+
+/* Adjusted navigation control styles */
+.nav-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 30;
+}
+
+.nav-controls button, .nav-controls input {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size: 1em;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.nav-controls button:hover {
+    background: #ddd;
+}
+
+.nav-controls input {
+    width: 60px;
+    text-align: center;
+    user-select: all;
+}
+
+/* Remove spin buttons from number input for Chrome, Safari, Edge, Opera */
+.nav-controls input[type=number]::-webkit-outer-spin-button,
+.nav-controls input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove spin buttons for Firefox */
+.nav-controls input[type=number] {
+    -moz-appearance: textfield;
+}

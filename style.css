@@ -84,9 +84,11 @@ body {
 }
 
 .nav-controls input {
-    width: 60px;
+    width: 15vh;
+    font-size: 4vh;
     text-align: center;
     user-select: all;
+    border-radius: 10vh;
 }
 
 /* Remove spin buttons from number input for Chrome, Safari, Edge, Opera */

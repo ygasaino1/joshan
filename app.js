@@ -13,6 +13,8 @@ function updateDisplay(index) {
     currentIndex = index;
     if (container) container.innerText = faraz[currentIndex];
     if (indexInput) indexInput.value = currentIndex + 1;
+    // Persist currentIndex in localStorage
+    localStorage.setItem('currentIndex', currentIndex);
 }
 
 // Event listeners for overlay navigation areas
@@ -28,6 +30,21 @@ if (rightOverlay) {
     });
 }
 
+// Add keyboard navigation for left and right arrow keys
+window.addEventListener('keydown', (e) => {
+    if (e.code === 'ArrowLeft') {
+        updateDisplay(currentIndex - 1);
+    } else if (e.code === 'ArrowRight') {
+        updateDisplay(currentIndex + 1);
+    }
+});
+
+if (indexInput) {
+    indexInput.addEventListener('focus', (e) => {
+        e.target.value = '';
+    });
+}
+
 if (indexInput) {
     indexInput.addEventListener('change', (e) => {
         const idx = parseInt(e.target.value, 10);
@@ -35,8 +52,53 @@ if (indexInput) {
         if (!isNaN(idx)) {
             updateDisplay(idx - 1);
         }
+        e.target.blur();
     });
 }
 
-// Initial display update
-updateDisplay(0);
+function launchFullScreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+}
+
+// New function to toggle fullscreen mode
+function toggleFullScreen() {
+    // Check if document is currently in fullscreen mode
+    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        // Exit fullscreen using available API
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    } else {
+        // Enter fullscreen mode
+        launchFullScreen(document.documentElement);
+    }
+}
+
+const fullscreenButton = document.getElementById('fullscreenButton');
+if (fullscreenButton) {
+    fullscreenButton.addEventListener('click', () => {
+        toggleFullScreen();
+    });
+}
+
+// Initial display update using stored currentIndex if exists
+const savedIndex = localStorage.getItem('currentIndex');
+if (savedIndex !== null) {
+    updateDisplay(parseInt(savedIndex, 10));
+} else {
+    updateDisplay(0);
+}

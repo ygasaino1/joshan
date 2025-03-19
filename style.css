@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
-  
-*,html{
+@import url('https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
+
+*,
+html {
     box-sizing: border-box;
     margin: 0px;
     user-select: none;
+    font-family: "Lateef", serif;
+    font-weight: 400;
+    font-style: normal;
 }
+
 body {
     background: #000;
     color: #fff;
@@ -13,16 +18,18 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
 }
 
 #farazContainer {
-    font-family:Arial, Helvetica, sans-serif;
-	text-align: center;
-	font-size: 6.5vh;
+    text-align: center;
     line-height: 1.7;
-	padding: 2em;
-	direction: rtl; /* added for right-to-left text display */
+    padding: 2em;
+    direction: rtl;
+    font-size: clamp(
+        6.5vh, 
+        calc(6.5vh + ((100vw - 100vh) * 0.014)),
+        10vh
+    );
 }
 
 /* New navigation container */
@@ -51,10 +58,12 @@ body {
     z-index: 10;
     cursor: pointer;
 }
+
 .nav-overlay.left {
     left: 0;
     width: 45%;
 }
+
 .nav-overlay.right {
     right: 0;
     width: 45%;
@@ -72,7 +81,8 @@ body {
     z-index: 30;
 }
 
-.nav-controls button, .nav-controls input {
+.nav-controls button,
+.nav-controls input {
     background: #fff;
     color: #000;
     border: none;
@@ -105,4 +115,18 @@ body {
 /* Remove spin buttons for Firefox */
 .nav-controls input[type=number] {
     -moz-appearance: textfield;
+}
+
+.fullscreen-button {
+    pointer-events: all;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: transparent; /* changed from solid white */
+    color: #fff;             /* white icon color */
+    padding: 0.25em 0.5em;    /* reduced padding */
+    font-size: 4.5vh;         /* increased size for icon look */
+    cursor: pointer;
+    z-index: 40;
+    font-family: monospace, Courier;
 }

@@ -8,8 +8,8 @@ const rightOverlay = document.querySelector('.nav-overlay.right');
 
 // Function to update displayed faraz and sync input value
 function updateDisplay(index) {
-    if (index < 0) index = 0;
-    if (index >= faraz.length) index = faraz.length - 1;
+    if (index < 0) index = 99;
+    if (index >= faraz.length) index = 0;
     currentIndex = index;
     if (container) container.innerText = faraz[currentIndex];
     if (indexInput) indexInput.value = currentIndex + 1;

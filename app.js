@@ -39,4 +39,4 @@ if (indexInput) {
 }
 
 // Initial display update
-updateDisplay(1);
+updateDisplay(0);

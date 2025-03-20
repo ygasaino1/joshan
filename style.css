@@ -103,6 +103,13 @@ body {
     text-align: center;
     user-select: all;
     border-radius: 10vh;
+    /* animation: pulseBackground 10s infinite ease-in-out; */
+    background-color: black;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-top: black;
+    border-bottom: black;
 }
 
 /* Remove spin buttons from number input for Chrome, Safari, Edge, Opera */

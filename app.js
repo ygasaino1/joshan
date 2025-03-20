@@ -82,11 +82,22 @@ function toggleFullScreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+        document.querySelector('#fullscreenButton').style.color = `#ffffff`;
     } else {
         // Enter fullscreen mode
         launchFullScreen(document.documentElement);
+        document.querySelector('#fullscreenButton').style.color = `#000000`;
+
     }
 }
+
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        document.querySelector('#fullscreenButton').style.color = `#ffffff`;
+    } else {
+        document.querySelector('#fullscreenButton').style.color = `#000000`;
+    }
+});
 
 const fullscreenButton = document.getElementById('fullscreenButton');
 if (fullscreenButton) {
